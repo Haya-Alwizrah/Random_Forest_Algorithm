@@ -1,40 +1,122 @@
 # Random Forest Algorithm
 
-This project serves as a comprehensive, structured exploration of the **Random Forest** algorithm across different domains of Machine Learning: **Classification** and **Regression**.
-Each subfolder contains a standalone project complete with its own dataset, exploratory data analysis (EDA), model implementation, and performance evaluation.
+This repository demonstrates the use of the **Random Forest** algorithm for two common supervised machine learning tasks:
+
+- **Classification:** Predict passenger survival using the **Titanic Dataset**.
+- **Regression:** Predict medical insurance expenses using the **Medical Insurance Dataset**.
+
+Each project follows a complete machine learning workflow, including:
+- Exploratory Data Analysis (EDA)
+- Data preprocessing
+- Model implementation
+- Model evaluation
+- Feature importance analysis
+
+## Repository Structure
+
+```
+Random Forest
+│
+├── Random Forest Classification
+│   ├── Mini_Project_Classification.ipynb
+│   ├── Titanic-Dataset.csv
+│   └── README.md
+│
+└── Random Forest Regression
+    ├── regression_mini_project.ipynb
+    ├── insurance.csv
+    └── README.md
+```
+---
+
+# What is Random Forest?
+
+**Random Forest** is a **Supervised Machine Learning** algorithm that belongs to the **Ensemble Learning** family.
+
+Instead of relying on a single Decision Tree, Random Forest builds many decision trees and combines their predictions to produce a more accurate and stable result.
+
+- **Classification:** predicts a category (e.g., Yes/No, Survived/Not Survived).
+- **Regression:** predicts a numerical value (e.g., House Price, Insurance Cost).
 
 ---
 
-## What is Random Forest?
-Random Forest is a versatile, supervised ensemble learning algorithm capable of performing both regression and classification tasks. It operates by constructing a multitude of decision trees during training and outputting either the class with the majority vote (Classification) or the mean/average prediction of the individual trees (Regression).
+# What is Ensemble Learning?
+
+**Ensemble Learning** is a machine learning technique that combines multiple models to produce a better prediction than a single model.
+
+The main idea is often called the **"Wisdom of the Crowd"**:
+> Many weak learners working together usually perform better than a single learner.
+> In Random Forest, the weak learners are individual Decision Trees that work together to produce a stronger final model.
+
+Random Forest is an example of **Bagging (Bootstrap Aggregating)**, one of the most popular Ensemble Learning methods.
 
 ---
 
-## Core Operational Mechanics:
-- Bootstrap Aggregating (Bagging): The algorithm creates multiple random subsets of the original training data (with replacement). A separate decision tree is trained independently on each subset.
-- Feature Randomness (Feature Bagging): At each node split in a tree, only a random subset of features is considered. This injects randomness, decorrelates the trees, and significantly reduces model variance.
-- Aggregation & Prediction:
-  - Classification: Mode of predicted classes (Majority Voting).
-  - Regression: Mean of predicted numerical values.
+# How Random Forest Works
 
- ---
- 
-## Random Forest: Pros & Cons:
-|  Advantages |  Limitations |
-|--------------|---------------|
-| **High Accuracy:** Combines multiple trees to outperform individual decision trees. | **Computationally Expensive:** Training dozens or hundreds of trees requires significant processing power and time. |
-| **Overfitting Control:** Bagging and feature randomness prevent model overfitting on training data. | **Lower Interpretability:** Acts as a "black box" compared to a single, visualizable decision tree. |
-| **Robust to Noise & Outliers:** Handles missing values, outliers, and noisy data gracefully. | **High Memory Consumption:** Storing ensemble structures consumes substantial RAM, especially with deep trees. |
-| **Built-in Feature Importance:** Automatically computes and ranks the impact of each feature on predictions. | **Extrapolation Limits:** Cannot predict numerical values outside the range seen in training data (Regression). |
-| **No Scaling Required:** Impervious to monotonic feature transformations; no need for StandardScaler or MinMaxScaler. | **Slow Predictions:** Evaluating new instances through hundreds of trees can be slow for real-time applications. |
+### 1. Bootstrap Sampling (Bagging)
+
+Random Forest creates multiple random training datasets by sampling the original dataset **with replacement**.
+
+Each dataset is then used to train a separate Decision Tree.
 
 ---
 
-## Classification vs. Regression: When to Use Which?
-| Criteria | Random Forest Classifier | Random Forest Regressor|
-|--------------|---------------|---------------|
-|Target Variable | Categorical / Discrete (e.g., 0 or 1, Yes or No, Cat/Dog) | Continuous / Numerical (e.g., Price, Salary, Temperature, Sales)|
-| Decision Rule | Majority Vote (Mode) across all trees | Average (Mean) across all trees |
-| Key Splitting Metric | Gini Impurity or Entropy (Information Gain) | Mean Squared Error (MSE) or Mean Absolute Error (MAE) |
-| Evaluation Metrics| Accuracy, Precision, Recall, F1-Score, ROC-AUC, Confusion Matrix | RMSE, MAE, R-Squared ($R^2$), MAPE|
-| Example Project in Repo | Titanic Passenger Survival Prediction | Residential House Price Prediction |
+### 2. Random Feature Selection
+
+When building each tree, Random Forest does **not** consider every feature at each split.
+
+Instead, it randomly selects a subset of features, making every tree different and reducing overfitting.
+
+---
+
+### 3. Build Multiple Decision Trees
+
+Each tree learns independently using its own random data and random feature selection.
+
+Because every tree is slightly different, they make different predictions.
+
+---
+
+### 4. Final Prediction
+
+The predictions from all trees are combined:
+
+- **Classification:** Majority Vote
+- **Regression:** Average Prediction
+
+This makes the final prediction more reliable than relying on a single Decision Tree.
+
+### 5. Better Generalization
+
+Since every tree is trained on different data and different feature subsets, Random Forest reduces overfitting and usually generalizes better to unseen data than a single Decision Tree.
+---
+
+# Advantages
+- High prediction accuracy.
+- Reduces overfitting compared to a single Decision Tree.
+- Works for both classification and regression tasks.
+- Handles noisy data and outliers effectively.
+- Provides built-in feature importance.
+- Requires little data preprocessing.
+- Does not require feature scaling.
+
+---
+
+# Limitations
+- Slower to train than a single Decision Tree.
+- Requires more memory because it stores many trees.
+- Less interpretable than an individual Decision Tree.
+- Prediction can be slower when using a large number of trees.
+
+---
+
+# Classification vs Regression
+
+| Criteria | Random Forest Classifier | Random Forest Regressor |
+|-----------|-------------------------|-------------------------|
+| Target | Categorical | Continuous |
+| Output | Class Label | Numerical Value |
+| Final Prediction | Majority Vote | Average Prediction |
+| Common Metrics | Accuracy, Precision, Recall, F1-score | R², MAE, RMSE |
+
