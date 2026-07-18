@@ -27,7 +27,7 @@ Random Forest Regression is an ensemble learning method that builds multiple dec
 ## Feature Scaling:
 Feature scaling was not applied because Random Forest Regression is a tree-based algorithm that is not affected by the scale of the input features. Therefore, scaling is not required for this model.
 
-## Evaluation:
+## Regression Evaluation:
 1. R² Score (Coefficient of Determination) = 0.8813 (88.13%)
  - What it means: Our model successfully explains 88.13% of the variation in insurance expenses.
  - Verdict: This is an excellent and highly accurate result for real-world data!
@@ -39,3 +39,6 @@ Feature scaling was not applied because Random Forest Regression is a tree-based
  - Verdict: Since RMSE is higher than MAE, it shows that there are a few outlier cases where the model had larger errors.
 4. Mean Squared Error (MSE) = 21,810,412.28
  - What it means: This is the average of the squared errors. It is primarily used mathematically to train the model, and a lower value is always better.
+
+## Classification Evaluation:
+...
