@@ -10,7 +10,7 @@
 - Note:
 ```
 ├── unsupervised_ml(v1).ipynb    --> Initial version (just to present the results)
-└── unsupervised_ml(v2).ipynb    --> Same code but got wrost results idk way.
+└── unsupervised_ml(v2).ipynb    --> Same code but got wrost results idk why.
 ```
 
 ### Techniques Applied
